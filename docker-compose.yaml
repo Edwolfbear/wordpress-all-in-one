@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  wordpress:
+    build: .
+    stdin_open: true
+    tty: true
+    ports:
+      - "80:80"
+      - "3306:3306"
+    volumes:
+      - ./index.php:/var/www/html/index.php
+      - ./wp-admin:/var/www/html/wp-admin
+      - ./wp-links-opml.php:/var/www/html/wp-links-opml.php
+      - ./wp-settings.php:/var/www/html/wp-settings.php
+      - ./license.txt:/var/www/html/license.txt
+      - ./wp-blog-header.php:/var/www/html/wp-blog-header.php
+      - ./wp-content:/var/www/html/wp-content
+      - ./wp-load.php:/var/www/html/wp-load.php
+      - ./wp-signup.php:/var/www/html/wp-signup.php
+      - ./readme.html:/var/www/html/readme.html
+      - ./wp-comments-post.php:/var/www/html/wp-comments-post.php
+      - ./wp-cron.php:/var/www/html/wp-cron.php
+      - ./wp-login.php:/var/www/html/wp-login.php
+      - ./wp-trackback.php:/var/www/html/wp-trackback.php
+      - ./wp-activate.php:/var/www/html/wp-activate.php
+      - ./wp-config-sample.php:/var/www/html/wp-config-sample.php
+      - ./wp-includes:/var/www/html/wp-includes
+      - ./wp-mail.php:/var/www/html/wp-mail.php
+      - ./xmlrpc.php:/var/www/html/xmlrpc.php
+
+#########################################################
+#                       MANUALLY!                       #
+#########################################################
+# service apache2 restart                               #
+# service mysql restart                                 #
+# mysql -u root                                         #
+# CREATE USER "wpuser" IDENTIFIED BY "GenericPassword"; #
+# CREATE DATABASE wordpress;                            #
+# GRANT ALL privileges ON "wdbtest".* TO 'wpuser';      #
+#########################################################
+
+# service apache2 restart && service mysql restart && mysql -u root
+# CREATE USER "wpuser" IDENTIFIED BY "GenericPassword"; CREATE DATABASE wordpress; GRANT ALL privileges ON "wordpress".* TO 'wpuser';
